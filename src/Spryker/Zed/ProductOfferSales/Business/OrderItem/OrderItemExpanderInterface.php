@@ -5,12 +5,12 @@
  * Use of this software requires acceptance of the Spryker Marketplace License Agreement. See LICENSE file.
  */
 
-namespace Spryker\Zed\ProductOfferSales\Business\Expander;
+namespace Spryker\Zed\ProductOfferSales\Business\OrderItem;
 
 use Generated\Shared\Transfer\ItemTransfer;
 use Generated\Shared\Transfer\SpySalesOrderItemEntityTransfer;
 
-class OrderItemExpander implements OrderItemExpanderInterface
+interface OrderItemExpanderInterface
 {
     /**
      * @param \Generated\Shared\Transfer\SpySalesOrderItemEntityTransfer $salesOrderItemEntityTransfer
@@ -21,13 +21,5 @@ class OrderItemExpander implements OrderItemExpanderInterface
     public function expandOrderItemWithProductOffer(
         SpySalesOrderItemEntityTransfer $salesOrderItemEntityTransfer,
         ItemTransfer $itemTransfer
-    ): SpySalesOrderItemEntityTransfer {
-        $productOfferReference = $itemTransfer->getProductOfferReference();
-
-        if (!$productOfferReference) {
-            return $salesOrderItemEntityTransfer;
-        }
-
-        return $salesOrderItemEntityTransfer->setProductOfferReference($productOfferReference);
-    }
+    ): SpySalesOrderItemEntityTransfer;
 }
